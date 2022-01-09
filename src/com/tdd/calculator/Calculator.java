@@ -38,8 +38,15 @@ public class Calculator {
 		ArrayList<String> negatives = new ArrayList<String>();
 		for (String strNum : numbers) {
 			int num = Integer.parseInt(strNum);
+
+//			to ignore the numbers > 1000
+			if(num > 1000)
+				continue;
+
+//			to store the negatives to display while exception
 			if (num < 0)
 				negatives.add(String.valueOf(num));
+
 			result += num;
 		}
 

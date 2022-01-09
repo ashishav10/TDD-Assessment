@@ -47,4 +47,10 @@ public class CalculatorTest {
 			assertEquals("negatives not allowed: -5 -3", e.getMessage());
 		}
 	}
+
+//	Number > 1000
+	@Test
+	public void greaterThanThousandTest() {
+		assertEquals(10, Calculator.add("//-\n5-2-3-5436"));
+	}
 }
