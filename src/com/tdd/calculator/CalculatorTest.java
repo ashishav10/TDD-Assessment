@@ -11,5 +11,10 @@ public class CalculatorTest {
 	public void emptyStringTest() {
 		assertEquals(0, Calculator.add(""));
 	}
-	
+
+//	Only one number
+	@Test
+	public void singleNumberTest() {
+		assertEquals(10, Calculator.add("10"));
+	}
 }

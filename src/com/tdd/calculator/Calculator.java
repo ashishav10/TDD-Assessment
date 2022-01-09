@@ -8,8 +8,8 @@ public class Calculator {
 		if(input.isBlank()) {
 			return 0;
 		}
-		
-		return -1;
+		else {
+			return Integer.parseInt(input);
+		}
 	}
-	
 }
