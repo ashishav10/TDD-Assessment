@@ -53,4 +53,10 @@ public class CalculatorTest {
 	public void greaterThanThousandTest() {
 		assertEquals(10, Calculator.add("//-\n5-2-3-5436"));
 	}
+
+//	Multiple delimiters
+	@Test
+	public void multipleDelimitersTest() {
+		assertEquals(10, Calculator.add("//[***][%%%]\n5%%2*****3"));
+	}
 }

@@ -6,17 +6,16 @@ public class Calculator {
 
 	public static int add(String input) {
 
-		int sum = 0;
 //		Empty String
 		if (input.isBlank()) {
 			return 0;
 		} else {
 			String[] numbers;
-//			Changed Delimiter
-			if (input.charAt(0) == '/') {
-				String delimiter = Character.toString(input.charAt(2));
-				numbers = splitUtilWithDelim(input.substring(4), delimiter);
-			} else
+
+//			Custom Delimiter
+			if (input.startsWith("//"))
+				numbers = splitUtilWithCustomDelim(input);
+			else
 				numbers = splitUtil(input);
 			return sumUtil(numbers);
 		}
@@ -28,8 +27,28 @@ public class Calculator {
 	}
 
 //  custom delimiter
-	private static String[] splitUtilWithDelim(String input, String delimiter) {
-		return input.split(delimiter);
+	private static String[] splitUtilWithCustomDelim(String input) {
+
+		//		To build regex
+		StringBuilder delimiter = new StringBuilder();
+		delimiter.append("[");
+
+//		to check for multiple delimiters of variable length
+		if (input.contains("[")) {
+			for (int i = 0; i < input.length(); i++) {
+				if (input.charAt(i) == '\n') {
+					input = input.substring(i + 1);
+					break;
+				}
+				if (input.charAt(i) == '[')
+					delimiter.append(input.charAt(i + 1));
+			}
+		} else {
+			delimiter.append(input.charAt(2));
+			input = input.substring(4);
+		}
+		delimiter.append("]+");
+		return input.split(delimiter.toString());
 	}
 
 //  sum the numbers
@@ -40,7 +59,7 @@ public class Calculator {
 			int num = Integer.parseInt(strNum);
 
 //			to ignore the numbers > 1000
-			if(num > 1000)
+			if (num > 1000)
 				continue;
 
 //			to store the negatives to display while exception
