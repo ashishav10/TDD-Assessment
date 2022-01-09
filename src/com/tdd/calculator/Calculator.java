@@ -1,5 +1,7 @@
 package com.tdd.calculator;
 
+import java.util.ArrayList;
+
 public class Calculator {
 
 	public static int add(String input) {
@@ -20,18 +22,31 @@ public class Calculator {
 		}
 	}
 
+//	delimiter = , or \n
 	private static String[] splitUtil(String input) {
 		return input.split(",|\n");
 	}
 
+//  custom delimiter
 	private static String[] splitUtilWithDelim(String input, String delimiter) {
 		return input.split(delimiter);
 	}
 
+//  sum the numbers
 	private static int sumUtil(String[] numbers) {
 		int result = 0;
-		for (String num : numbers)
-			result += Integer.parseInt(num);
+		ArrayList<String> negatives = new ArrayList<String>();
+		for (String strNum : numbers) {
+			int num = Integer.parseInt(strNum);
+			if (num < 0)
+				negatives.add(String.valueOf(num));
+			result += num;
+		}
+
+//		exception for negative numbers
+		if (negatives.size() > 0) {
+			throw new RuntimeException("negatives not allowed: " + String.join(" ", negatives));
+		}
 		return result;
 	}
 }

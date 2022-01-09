@@ -1,6 +1,7 @@
 package com.tdd.calculator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,5 +35,16 @@ public class CalculatorTest {
 	@Test
 	public void delimiterChangeTest() {
 		assertEquals(10, Calculator.add("//;\n5;2;3"));
+	}
+
+//	Negative numbers
+	@Test
+	public void negativeNumbersTest() {
+		try {
+			Calculator.add("-5,2,-3");
+			fail("Exception expected.");
+		} catch (RuntimeException e) {
+			assertEquals("negatives not allowed: -5 -3", e.getMessage());
+		}
 	}
 }
