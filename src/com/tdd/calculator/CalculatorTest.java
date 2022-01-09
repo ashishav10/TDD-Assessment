@@ -17,4 +17,10 @@ public class CalculatorTest {
 	public void singleNumberTest() {
 		assertEquals(10, Calculator.add("10"));
 	}
+
+//	Numbers delimited by comma
+	@Test
+	public void delimitedByComma() {
+		assertEquals(10, Calculator.add("5,3,2"));
+	}
 }
