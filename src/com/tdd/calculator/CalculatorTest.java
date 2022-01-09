@@ -20,13 +20,19 @@ public class CalculatorTest {
 
 //	Numbers delimited by comma
 	@Test
-	public void delimitedByComma() {
+	public void delimitedByCommaTest() {
 		assertEquals(10, Calculator.add("5,3,2"));
 	}
 
 //	Numbers delimited by newline char
 	@Test
-	public void delimitedByNewLineChar() {
+	public void delimitedByNewLineCharTest() {
 		assertEquals(10, Calculator.add("5\n2,3"));
+	}
+
+//	Change delimiter
+	@Test
+	public void delimiterChangeTest() {
+		assertEquals(10, Calculator.add("//;\n5;2;3"));
 	}
 }
